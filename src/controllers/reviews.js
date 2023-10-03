@@ -2,7 +2,7 @@ import {Router} from 'express'
 import { Review } from '../models/Review.js'
 const reviewsRouter = Router()
 
-reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todos los empleados
+reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todas las resenias
     try {
         const reviews = await Review.findAll() 
         res.json(reviews)
@@ -13,7 +13,7 @@ reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todos los emplea
 })
 
 
-reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve un empleado
+reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
     try {
         const {id} = req.params
         const review = await Review.findByPk(id) 
@@ -26,7 +26,7 @@ reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve un empleado
 })
 
 
-reviewsRouter.post('/reviews', async(req, res) => {
+reviewsRouter.post('/reviews', async(req, res) => {                                       //crea una resenia
     try {
         const {country,city,description,stars,userId} = req.body
         const newReview = await Review.create({
@@ -44,7 +44,7 @@ reviewsRouter.post('/reviews', async(req, res) => {
 })
 
  
-reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar un empleado
+reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar una resenia
     try {
         const {id} = req.params
         const review = await Review.findByPk(id) 
@@ -59,7 +59,7 @@ reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar un emplead
 })
 
 
-reviewsRouter.delete('/reviews/:id', async(req, res) => {   //eliminar un empleado
+reviewsRouter.delete('/reviews/:id', async(req, res) => {   //eliminar una resenia
     try {
         const {id} = req.params
         review.destroy({

@@ -4,7 +4,7 @@ import { Review } from '../models/Review.js'
 
 const usersRouter = Router() 
 
-usersRouter.get('/users', async(req,res) => {    //este es para traer todas las companias
+usersRouter.get('/users', async(req,res) => {    //este es para traer todos los usuarios
     try {
         const users = await User.findAll()
         res.json(users) 
@@ -14,7 +14,7 @@ usersRouter.get('/users', async(req,res) => {    //este es para traer todas las 
 })
 
 
-usersRouter.get('/users/:id', async(req,res) => {  //este es para traer una determinada compania
+usersRouter.get('/users/:id', async(req,res) => {  //este es para traer un determinado usuario
     try {
         const {id} = req.params
         const user = await User.findByPk(id)
@@ -25,7 +25,7 @@ usersRouter.get('/users/:id', async(req,res) => {  //este es para traer una dete
 })
 
 
-usersRouter.post('/users', async(req,res) => {            //este es para crear una nueva compania
+usersRouter.post('/users', async(req,res) => {            //este es para crear un nuevo usuario
     try {
         const {email, password, name} = req.body
         const newUser = await User.create({
@@ -41,7 +41,7 @@ usersRouter.post('/users', async(req,res) => {            //este es para crear u
 
 
 
-usersRouter.put('/users/:id', async(req,res) => {          //para editar una compania
+usersRouter.put('/users/:id', async(req,res) => {          //para editar un usuario
     try {
         const {id} = req.params
         const user = await User.findByPk(id)
@@ -56,7 +56,7 @@ usersRouter.put('/users/:id', async(req,res) => {          //para editar una com
 
 
 
-usersRouter.delete('/users/:id', async(req,res) => {    //este para eliminar una compania
+usersRouter.delete('/users/:id', async(req,res) => {    //este para eliminar un usuario
     try {
         const {id} = req.params
         await User.destroy({
@@ -73,7 +73,7 @@ usersRouter.delete('/users/:id', async(req,res) => {    //este para eliminar una
 
 
 
-usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer todos los empleados de una compania
+usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer todas las resenias de una compania
     try {
         const {id} = req.params
         const user = await User.findOne({

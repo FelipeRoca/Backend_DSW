@@ -2,7 +2,6 @@ import express from 'express'
 import {sequelize} from './database/connect.js'
 import usersRouter from './controllers/users.js' 
 import reviewsRouter from './controllers/reviews.js'
-import "./models/User.js"
 
 
 const app = express()
