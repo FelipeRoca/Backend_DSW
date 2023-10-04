@@ -2,6 +2,11 @@ import express from 'express'
 import {sequelize} from './database/connect.js'
 import usersRouter from './controllers/users.js' 
 import reviewsRouter from './controllers/reviews.js'
+import countriesRouter from './controllers/countries.js'
+import citiesRouter from './controllers/cities.js'
+import './models/User.js'
+import './models/Country.js'
+
 
 
 const app = express()
@@ -30,4 +35,6 @@ app.listen(PORT, () => {
 
 app.use(usersRouter)
 app.use(reviewsRouter)
+app.use(countriesRouter)
+app.use(citiesRouter)
 //quede en el video 3

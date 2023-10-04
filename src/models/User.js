@@ -3,6 +3,7 @@ import {sequelize } from "../database/connect.js";
 import { Review } from "./Review.js"
 
 
+
 export const User = sequelize.define('User', {
     id:{
         type: DataTypes.INTEGER,

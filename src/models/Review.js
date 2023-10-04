@@ -8,12 +8,6 @@ export const Review = sequelize.define('Review', {
         primaryKey: true,
         autoIncrement:true
     },
-    country:{
-        type:DataTypes.STRING        
-    },
-    city:{
-        type:DataTypes.STRING        
-    },
     imag:{
         type:DataTypes.BLOB      
     },
@@ -24,3 +18,4 @@ export const Review = sequelize.define('Review', {
         type:DataTypes.INTEGER
     }
 })
+

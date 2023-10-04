@@ -28,10 +28,8 @@ reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
 
 reviewsRouter.post('/reviews', async(req, res) => {                                       //crea una resenia
     try {
-        const {country,city,description,stars,userId} = req.body
+        const {description,stars,userId} = req.body
         const newReview = await Review.create({
-            country,
-            city,
             description,
             stars,
             userId
