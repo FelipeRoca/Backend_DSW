@@ -2,7 +2,7 @@ import {Router} from 'express'
 import { Country } from '../models/Country.js'
 const countriesRouter = Router()
 
-countriesRouter.get('/countries', async(req, res) => {   //devuelve todos los paises
+countriesRouter.get('/countries', async(req, res) => {                                       //devuelve todos los paises
     try {
         const countries = await Country.findAll() 
         res.json(countries)

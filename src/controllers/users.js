@@ -73,7 +73,7 @@ usersRouter.delete('/users/:id', async(req,res) => {    //este para eliminar un 
 
 
 
-usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer todas las resenias de una compania
+usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer todas las resenias de un usuario
     try {
         const {id} = req.params
         const user = await User.findOne({
