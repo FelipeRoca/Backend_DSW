@@ -25,6 +25,25 @@ reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
     }
 })
 
+reviewsRouter.get('/reviews/usuario/:userId', async(req, res) => {    //devuelve todas las reseñas que tienen un determinado userId
+    try {
+        const {userId} = req.params
+        const reviews = await Review.findAll({
+            where: {
+                userId: userId
+            }
+        }) 
+        res.json(reviews)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+})
+
+
+
+
 
 reviewsRouter.post('/reviews', async(req, res) => {                                       //crea una resenia
     try {
