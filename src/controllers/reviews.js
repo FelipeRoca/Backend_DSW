@@ -1,5 +1,7 @@
 import {Router} from 'express'
 import { Review } from '../models/Review.js'
+import { Country } from '../models/Country.js'
+import { City } from '../models/City.js'
 const reviewsRouter = Router()
 
 reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todas las resenias
@@ -47,14 +49,30 @@ reviewsRouter.get('/reviews/usuario/:userId', async(req, res) => {    //devuelve
 
 reviewsRouter.post('/reviews', async(req, res) => {                                       //crea una resenia
     try {
-        const {description,stars,userId} = req.body
+        const {country, city,description,stars,userId} = req.body
+        const existCountry = await Country.findOne({
+            where: {name : country }
+        })
+        if (existCountry){
+            const existCity = await City.findOne({
+                where : { name : city}
+            })
+            let newCity 
+            if (!existCity) {
+                 newCity=await City.create({
+                    name:city,
+                    countryId: existCountry.id
+                })
+            } else {newCity = existCity}
+         
         const newReview = await Review.create({
             description,
             stars,
-            userId
+            userId,
+            cityId:newCity.id
         })
         res.status(201).json(newReview)
-    } catch (error) {
+    }} catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
