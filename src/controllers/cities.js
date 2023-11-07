@@ -12,6 +12,17 @@ citiesRouter.get('/cities', async(req, res) => {   //devuelve todas las ciudades
     }
 })
 
+citiesRouter.get('/cities/:id', async(req,res) => {  //este es para traer una determinada ciudad
+    try {
+        const {id} = req.params
+        const city = await City.findByPk(id)
+        res.json(city)       
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+})
+
+
 
 citiesRouter.post('/cities', async(req, res) => {                                       //crea una ciudad
     try {
