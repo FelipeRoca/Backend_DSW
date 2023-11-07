@@ -97,7 +97,7 @@ reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar una reseni
 reviewsRouter.delete('/reviews/:id', async(req, res) => {   //eliminar una resenia
     try {
         const {id} = req.params
-        review.destroy({
+        Review.destroy({
             where: {id}
         })
         res.status(204).end()
