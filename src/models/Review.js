@@ -8,9 +8,6 @@ export const Review = sequelize.define('Review', {
         primaryKey: true,
         autoIncrement:true
     },
-    imag:{
-        type:DataTypes.BLOB      
-    },
     description:{
         type:DataTypes.STRING      
     },
