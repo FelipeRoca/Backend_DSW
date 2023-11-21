@@ -3,6 +3,7 @@ import { Review } from '../models/Review.js'
 import { Country } from '../models/Country.js'
 import { City } from '../models/City.js'
 import { Op } from 'sequelize';
+import { validateToken } from './authController.js';
 
 // Resto de tu código
 
@@ -34,7 +35,7 @@ reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
     }
 })
 
-reviewsRouter.get('/reviews/usuario/:userId', async(req, res) => {    //devuelve todas las reseñas que tienen un determinado userId
+reviewsRouter.get('/reviews/usuario/:userId',validateToken, async(req, res) => {    //devuelve todas las reseñas que tienen un determinado userId
     try {
         const {userId} = req.params
         const reviews = await Review.findAll({
@@ -83,7 +84,7 @@ reviewsRouter.get('/reviews/city/:cityName', async (req, res) => {
 
 
 
-reviewsRouter.post('/reviews', async(req, res) => {                                       //crea una resenia
+reviewsRouter.post('/reviews',validateToken, async(req, res) => {                                       //crea una resenia
     try {
         const {country, city,description,stars,userId} = req.body
         const existCountry = await Country.findOne({
@@ -115,7 +116,7 @@ reviewsRouter.post('/reviews', async(req, res) => {                             
 })
 
  
-reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar una resenia
+reviewsRouter.put('/reviews/:id',validateToken, async(req, res) => {   //actualizar una resenia
     try {
         const {id} = req.params
         const review = await Review.findByPk(id) 
@@ -130,7 +131,7 @@ reviewsRouter.put('/reviews/:id', async(req, res) => {   //actualizar una reseni
 })
 
 
-reviewsRouter.delete('/reviews/:id', async(req, res) => {   //eliminar una resenia
+reviewsRouter.delete('/reviews/:id', validateToken, async(req, res) => {   //eliminar una resenia
     try {
         const {id} = req.params
         Review.destroy({

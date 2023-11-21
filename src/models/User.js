@@ -20,8 +20,7 @@ export const User = sequelize.define('User', {
         allowNull:false
     },
     name:{
-        type:DataTypes.STRING,
-        unique: true
+        type:DataTypes.STRING
     }
 })
 

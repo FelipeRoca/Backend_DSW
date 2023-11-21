@@ -1,6 +1,10 @@
 import {Router} from 'express'
 import { User } from '../models/User.js'
 import { Review } from '../models/Review.js'
+import { validateToken } from './authController.js';
+
+
+
 
 const usersRouter = Router() 
 
@@ -25,19 +29,7 @@ usersRouter.get('/users/:id', async(req,res) => {  //este es para traer un deter
 })
 
 
-usersRouter.post('/users', async(req,res) => {            //este es para crear un nuevo usuario
-    try {
-        const {email, password, name} = req.body
-        const newUser = await User.create({
-            email, 
-            password, 
-            name     
-        })
-        res.status(201).json(newUser)
-    } catch (error) {
-        res.status(500).json({error: error.message})
-    }
-})
+
 
 
 
@@ -73,7 +65,7 @@ usersRouter.delete('/users/:id', async(req,res) => {    //este para eliminar un 
 
 
 
-usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer todas las resenias de un usuario
+usersRouter.get('/users/:id/reviews',validateToken, async(req,res) => {  //este es para traer todas las resenias de un usuario
     try {
         const {id} = req.params
         const user = await User.findOne({
@@ -87,7 +79,6 @@ usersRouter.get('/users/:id/reviews', async(req,res) => {  //este es para traer 
         res.status(500).json({error: error.message})
     }
 })
-
 
 export default usersRouter
 
