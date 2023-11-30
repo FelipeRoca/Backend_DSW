@@ -25,6 +25,9 @@ try {
 // Configura CORS para permitir solicitudes desde cualquier origen
 app.use(cors());
 
+
+
+
 app.get('/', (req, res) => {
     res.json({ message: 'todo ok' });
 });
