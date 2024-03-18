@@ -12,15 +12,7 @@ import { Op } from 'sequelize';
 
 const reviewsRouter = Router()
 
-// reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todas las resenias
-//     try {
-//         const reviews = await Review.findAll() 
-//         res.json(reviews)
-//     } catch (error) {
-//         console.error(error)
-//         res.status(500).json({error: error.message})
-//     }
-// })
+
 reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todas las resenias
     try {
         const reviews = await Review.findAll({
@@ -43,6 +35,32 @@ reviewsRouter.get('/reviews', async(req, res) => {   //devuelve todas las reseni
 })
 
 
+reviewsRouter.get('/reviews/usuario/:userId', async(req, res) => {    //devuelve todas las reseñas que tienen un determinado userId
+    try {
+        const {userId} = req.params
+        const reviews = await Review.findAll({
+            include: [
+                {
+                  model: City,
+                  include: [
+                    {
+                      model: Country
+                    }
+                  ]
+                }
+              ],
+            where: {
+                userId: userId
+            }
+        }) 
+        res.json(reviews)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+})
+
 
 
 reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
@@ -59,46 +77,9 @@ reviewsRouter.get('/reviews/:id', async(req, res) => {    //devuelve una resenia
     }
 })
 
-reviewsRouter.get('/reviews/usuario/:userId', async(req, res) => {    //devuelve todas las reseñas que tienen un determinado userId
-    try {
-        const {userId} = req.params
-        const reviews = await Review.findAll({
-            where: {
-                userId: userId
-            }
-        }) 
-        res.json(reviews)
-
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({error: error.message})
-    }
-})
 
 
 
-
-// reviewsRouter.get('/reviews/city/:cityName', async (req, res) => {
-//   try {
-//     const { cityName } = req.params;
-//     const reviews = await Review.findAll({
-//       include: [
-//         {
-//           model: City,
-//           where: {
-//             name: {
-//               [Op.like]: `%${cityName}%`
-//             }
-//           }
-//         }
-//       ]
-//     });
-//     res.json(reviews);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: error.message });
-//   }
-// });
 
 reviewsRouter.get('/reviews/city/:cityName', async (req, res) => {
     try {
