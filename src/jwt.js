@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-//const jwt = require('jsonwebtoken');
 
-const secretKey = process.env.JWT_SEED || 'tuClaveSecreta'; // Puedes usar una clave en tu entorno o una predeterminada
+
+const secretKey = process.env.JWT_SEED || 'tuClaveSecreta'; 
 
 function signToken(payload) {
   return jwt.sign(payload, secretKey, { expiresIn: '6h' });

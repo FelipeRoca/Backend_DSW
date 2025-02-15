@@ -1,6 +1,6 @@
 
 import express, { Router } from 'express';
-import cors from 'cors'; // Importa el módulo CORS
+import cors from 'cors'; 
 import { sequelize } from './database/connect.js';
 import usersRouter from './controllers/users.js';
 import reviewsRouter from './controllers/reviews.js';
@@ -22,7 +22,7 @@ try {
     console.error(error);
 }
 
-// Configura CORS para permitir solicitudes desde cualquier origen
+
 app.use(cors());
 
 

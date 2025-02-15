@@ -5,11 +5,6 @@ import { City } from '../models/City.js'
 import { Op } from 'sequelize';
 
 
-// Resto de tu código
-
-
-// Resto de tu código
-
 const reviewsRouter = Router()
 
 

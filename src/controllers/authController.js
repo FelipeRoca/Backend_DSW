@@ -30,7 +30,7 @@ authRouter.post('/login', async (req, res ) => {
   // Generamos token
   const token = jwt.sign({
     email: email
-  }, process.env.SECRET_KEY || 'pepito123', /* expiresIn: 't en ms' Para que el token expire en un tiempo t */);
+  }, process.env.SECRET_KEY || 'pepito123', );
 
   const obj = {
     tok: token,
