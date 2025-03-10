@@ -8,7 +8,7 @@ citiesRouter.get('/cities', async(req, res) => {   //devuelve todas las ciudades
         res.json(cities)
     } catch (error) {
         console.error(error)
-        res.status(500).json({error: error.message})
+        res.status(500).json({error: error.message})   //500: error internodel servidor
     }
 })
 
@@ -24,14 +24,14 @@ citiesRouter.get('/cities/:id', async(req,res) => {  //este es para traer una de
 
 
 
-citiesRouter.post('/cities', async(req, res) => {                                       //crea una ciudad
+citiesRouter.post('/cities', async(req, res) => {                            //crea una ciudad
     try {
         const {name, countryId} = req.body
         const newCity = await City.create({
             name,
             countryId
         })
-        res.status(201).json(newCity)
+        res.status(201).json(newCity)                                        //crecion de un nuevo recurso en elservidor
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
