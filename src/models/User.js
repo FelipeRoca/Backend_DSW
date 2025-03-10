@@ -3,6 +3,7 @@ import {sequelize } from "../database/connect.js";
 import { Review } from "./Review.js"
 
 
+
 export const User = sequelize.define('User', {
     id:{
         type: DataTypes.INTEGER,
@@ -19,8 +20,7 @@ export const User = sequelize.define('User', {
         allowNull:false
     },
     name:{
-        type:DataTypes.STRING,
-        unique: true
+        type:DataTypes.STRING
     }
 })
 
